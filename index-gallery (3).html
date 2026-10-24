@@ -1,0 +1,2579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>DripDrop Cafe & Clothing Co.</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&amp;family=Inter:wght@400;500;600&amp;family=Archivo+Black&amp;display=swap">
+    <style>
+      :root {
+        --bg: #f1ead9;
+        --ink: #191814;
+        --mut: #6d6a60;
+        --c: #d8cfb8;
+        --g: #1e3d2c;
+        --m: #6b2d2f;
+        --card: #f8f3e6;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top,0px);
+        padding-bottom: env(safe-area-inset-bottom,0px);
+      }
+
+      @media (prefers-color-scheme:dark) {
+        :root:not([data-theme=light]) {
+          --bg: #15140f;
+          --ink: #f1ead9;
+          --mut: #a39f90;
+          --c: #3a382f;
+          --card: #1e1c16;
+          --g: #3b7556;
+        }
+        :root:not([data-theme=light]) .lg {
+          filter: invert(1);
+        }
+      }
+
+      :root[data-theme=dark] {
+        --bg: #15140f;
+        --ink: #f1ead9;
+        --mut: #a39f90;
+        --c: #3a382f;
+        --card: #1e1c16;
+        --g: #3b7556;
+      }
+
+      html {
+        scroll-padding-top: calc(env(safe-area-inset-top,0px) + 70px);
+        height: 100%;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 Inter,system-ui,Arial,sans-serif;
+      }
+
+      h1,h2,h3 {
+        font-family: Fraunces,Georgia,serif;
+        font-weight: 500;
+        line-height: 1.05;
+        margin: 0;
+      }
+
+      em {
+        font-style: italic;
+        color: var(--g);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .lab {
+        font-size: 11px;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--mut);
+        font-weight: 600;
+      }
+
+      .w {
+        max-width: 1180px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .sec {
+        padding: 72px 0;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0 0 auto;
+        height: env(safe-area-inset-top,0px);
+        background: var(--bg);
+        z-index: 60;
+      }
+
+      header {
+        position: sticky;
+        top: env(safe-area-inset-top,0px);
+        z-index: 50;
+        background: var(--bg);
+        border-bottom: 1px solid var(--c);
+      }
+
+      .nb {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font: 700 19px Fraunces,Georgia,serif;
+        cursor: pointer;
+        background: none;
+        border: 0;
+        color: inherit;
+        padding: 0;
+      }
+
+      .brand img {
+        height: 34px;
+      }
+
+      nav {
+        display: flex;
+        gap: 26px;
+      }
+
+      nav a,nav button {
+        font: 500 13px Inter,sans-serif;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: none;
+        border: 0;
+        color: var(--ink);
+        cursor: pointer;
+        padding: 6px 0;
+        border-bottom: 2px solid transparent;
+      }
+
+      nav .on {
+        border-color: var(--g);
+      }
+
+      .cart {
+        border: 1px solid var(--ink);
+        border-radius: 99px;
+        padding: 6px 14px;
+        font: 600 12px Inter;
+        background: none;
+        color: var(--ink);
+        cursor: pointer;
+      }
+
+      .hb {
+        display: none;
+        background: none;
+        border: 1px solid var(--ink);
+        color: var(--ink);
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 18px;
+      }
+
+      .tr {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .header-icon {
+        width: 38px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        transition: background .2s,border-color .2s,transform .2s;
+        padding: 0;
+      }
+
+      .header-icon:hover {
+        background: var(--card);
+        border-color: var(--c);
+        transform: translateY(-2px);
+      }
+
+      .header-icon svg {
+        width: 19px;
+        height: 19px;
+        display: block;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cart {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        transition: background .2s,border-color .2s,transform .2s;
+      }
+
+      .cart:hover {
+        background: var(--card);
+        border-color: var(--c);
+        transform: translateY(-2px);
+      }
+
+      .cart svg {
+        width: 20px;
+        height: 20px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -2px;
+        right: -3px;
+        min-width: 17px;
+        height: 17px;
+        padding: 0 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 99px;
+        background: var(--g);
+        color: #fff;
+        font: 700 10px Inter;
+        line-height: 1;
+      }
+
+      .cart-count:empty {
+        display: none;
+      }
+
+      @media (max-width:520px) {
+        .nb {
+          gap: 8px;
+        }
+        .brand {
+          font-size: 14px;
+          gap: 6px;
+        }
+        .brand img {
+          height: 29px;
+        }
+        .tr {
+          gap: 4px;
+        }
+        .header-icon {
+          width: 32px;
+          height: 34px;
+        }
+        .header-icon svg {
+          width: 17px;
+          height: 17px;
+        }
+        .cart {
+          width: 32px;
+          height: 34px;
+        }
+        .cart svg {
+          width: 18px;
+          height: 18px;
+        }
+        .cart-count {
+          top: -3px;
+          right: -4px;
+        }
+        .hb {
+          padding: 5px 8px;
+        }
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 13px 26px;
+        border-radius: 99px;
+        font: 600 13px Inter;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        border: 1.5px solid var(--ink);
+        background: var(--ink);
+        color: var(--bg);
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn.o {
+        background: none;
+        color: inherit;
+        border-color: currentColor;
+      }
+
+      .btn.g {
+        background: var(--g);
+        border-color: var(--g);
+        color: #f1ead9;
+      }
+
+      .pg {
+        display: none;
+      }
+
+      .pg.on {
+        display: block;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 84vh;
+        display: flex;
+        align-items: flex-end;
+        color: #f1ead9;
+        background: #222;
+      }
+
+      .hero img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg,rgba(10,10,8,.9),rgba(10,10,8,.5) 65%,rgba(10,10,8,.3));
+      }
+
+      .hero .w {
+        position: relative;
+        z-index: 2;
+        padding-bottom: 56px;
+      }
+
+      .bx {
+        font-family: "Archivo Black","Arial Black",Impact,sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: -.035em;
+        line-height: .9;
+      }
+
+      .bx em {
+        font-style: normal;
+        color: var(--g);
+      }
+
+      .hero h1 {
+        font-size: clamp(46px,10.5vw,132px);
+        margin: 14px 0 22px;
+      }
+
+      .hero h1 em {
+        color: #3b7556;
+      }
+
+      .gl {
+        font-size: 34px;
+        margin: 38px 0 18px;
+      }
+
+      .hero p {
+        font-size: 19px;
+        max-width: 34ch;
+        margin: 0 0 26px;
+        opacity: .9;
+      }
+
+      .hero .btn.o {
+        color: #f1ead9;
+      }
+
+      .btn.l {
+        background: #f1ead9;
+        color: #191814;
+        border-color: #f1ead9;
+      }
+
+      .mq {
+        background: var(--g);
+        color: #f1ead9;
+        padding: 13px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        font: italic 500 20px Fraunces,serif;
+      }
+
+      .mq div {
+        display: inline-block;
+        animation: mq 28s linear infinite;
+      }
+
+      @keyframes mq {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .tile {
+        position: relative;
+        aspect-ratio: 4/5;
+        overflow: hidden;
+        color: #f1ead9;
+        display: flex;
+        align-items: flex-end;
+        padding: 26px;
+        cursor: pointer;
+      }
+
+      .tile img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .5s;
+      }
+
+      .tile:hover img {
+        transform: scale(1.04);
+      }
+
+      .tile:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg,rgba(0,0,0,.7),transparent 55%);
+      }
+
+      .tile div {
+        position: relative;
+        z-index: 2;
+      }
+
+      .tile h2 {
+        font-size: 44px;
+      }
+
+      .hd {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+      }
+
+      .hd h2 {
+        font-size: clamp(34px,5vw,56px);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+        gap: 22px;
+      }
+
+      .card {
+        cursor: pointer;
+      }
+
+      .ph,.card .im {
+        aspect-ratio: 4/5;
+        background: var(--c);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .4s;
+      }
+
+      .card:hover img {
+        transform: scale(1.04);
+      }
+
+      .ph {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+        color: var(--mut);
+        padding: 14px;
+        border: 1.5px dashed var(--mut);
+      }
+
+      .card h3 {
+        font-size: 21px;
+        margin: 12px 0 2px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .sw {
+        display: flex;
+        gap: 6px;
+      }
+
+      .sw i {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid rgba(0,0,0,.35);
+        display: block;
+        cursor: pointer;
+      }
+
+      .sw i.on {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+      }
+
+      .pr {
+        font-weight: 600;
+      }
+
+      .fl {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        padding: 8px 18px;
+        border: 1px solid var(--ink);
+        border-radius: 99px;
+        background: none;
+        color: var(--ink);
+        font: 500 13px Inter;
+        cursor: pointer;
+      }
+
+      .chip.on {
+        background: var(--ink);
+        color: var(--bg);
+      }
+
+      .dk {
+        background: #191814;
+        color: #f1ead9;
+      }
+
+      .dk .lab {
+        color: #a9a595;
+      }
+
+      .story {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .story h1 {
+        font-size: clamp(42px,6vw,76px);
+        margin: 12px 0 22px;
+      }
+
+      .story p {
+        font-size: 18px;
+      }
+
+      .stack {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .clg {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        grid-auto-rows: 84px;
+        gap: 12px;
+      }
+
+      .clg div {
+        position: relative;
+        border-radius: 22px;
+        overflow: hidden;
+        transition: transform .35s;
+      }
+
+      .clg div:hover {
+        transform: translateY(-6px) scale(1.03);
+        z-index: 2;
+      }
+
+      .clg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .c1 {
+        grid-area: 1/1/4/5;
+      }
+
+      .c2 {
+        grid-area: 1/5/5/7;
+      }
+
+      .c3 {
+        grid-area: 4/1/7/3;
+      }
+
+      .c4 {
+        grid-area: 4/3/7/5;
+      }
+
+      .c5 {
+        grid-area: 5/5/7/7;
+      }
+
+      .ban {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        margin-bottom: 24px;
+        background: var(--card);
+        border: 1px solid var(--c);
+      }
+
+      .ban:nth-child(even) {
+        direction: rtl;
+      }
+
+      .ban>* {
+        direction: ltr;
+      }
+
+      .ban img {
+        width: 100%;
+        height: 100%;
+        min-height: 340px;
+        object-fit: cover;
+      }
+
+      .ban div {
+        padding: 44px;
+      }
+
+      .ban h2 {
+        font-size: 42px;
+        margin: 10px 0 14px;
+      }
+
+      .ban h3 {
+        font-size: 22px;
+        font-style: italic;
+        color: var(--g);
+        margin-bottom: 12px;
+      }
+
+      .sm {
+        font-size: 12px;
+        color: var(--mut);
+        margin-top: 12px;
+      }
+
+      .ct {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+
+      .f label {
+        display: block;
+        font-size: 12px;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        margin: 16px 0 6px;
+      }
+
+      .f input,.f textarea {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid var(--ink);
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+      }
+
+      .map {
+        height: 200px;
+        margin-top: 20px;
+      }
+
+      .ph.t {
+        aspect-ratio: auto;
+      }
+
+      .tm {
+        display: grid;
+        grid-template-columns: 230px 1fr;
+        gap: 48px;
+      }
+
+      .tm aside {
+        position: sticky;
+        top: calc(env(safe-area-inset-top,0px) + 84px);
+        align-self: start;
+      }
+
+      .tm aside a {
+        display: block;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--c);
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .tm h3 {
+        font-size: 28px;
+        margin: 38px 0 10px;
+      }
+
+      .tm li {
+        margin-bottom: 6px;
+      }
+
+      .dt {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        background: var(--bg);
+        overflow: auto;
+        display: none;
+      }
+
+      .dt.on {
+        display: block;
+      }
+
+      .dg {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 44px;
+        padding: 30px 0 60px;
+      }
+
+      .dg>div:first-child img {
+        width: 100%;
+        max-height: 78vh;
+        object-fit: cover;
+      }
+
+      .th {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .th img {
+        width: 64px;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        opacity: .6;
+      }
+
+      .th img.on {
+        opacity: 1;
+        outline: 2px solid var(--ink);
+      }
+
+      .dg h2 {
+        font-size: clamp(34px,5vw,54px);
+        margin: 8px 0 10px;
+      }
+
+      .x {
+        float: right;
+        margin: 14px 20px 0;
+        background: none;
+        border: 1px solid var(--ink);
+        color: var(--ink);
+        border-radius: 99px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font: 600 12px Inter;
+      }
+
+      .sz {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 8px 0 22px;
+      }
+
+      .sz button {
+        padding: 10px 16px;
+        border: 1px solid var(--ink);
+        background: none;
+        color: var(--ink);
+        cursor: pointer;
+        font: 500 13px Inter;
+      }
+
+      .sz button.on {
+        background: var(--ink);
+        color: var(--bg);
+      }
+
+      footer {
+        background: #191814;
+        color: #f1ead9;
+        padding: 56px 0 30px;
+      }
+
+      footer .g {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 30px;
+      }
+
+      footer a {
+        display: block;
+        text-decoration: none;
+        opacity: .8;
+        padding: 3px 0;
+        cursor: pointer;
+      }
+
+      footer .small {
+        border-top: 1px solid #3a382f;
+        margin-top: 34px;
+        padding-top: 18px;
+        font-size: 12px;
+        opacity: .7;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: calc(env(safe-area-inset-bottom,0px) + 22px);
+        left: 50%;
+        transform: translateX(-50%) translateY(90px);
+        background: var(--g);
+        color: #f1ead9;
+        padding: 12px 22px;
+        border-radius: 99px;
+        z-index: 99;
+        transition: .3s;
+        font-weight: 600;
+      }
+
+      .toast.on {
+        transform: translateX(-50%);
+      }
+
+      .card .im,.ph,.tile,.stack img,.dk .story>img,.dg>div:first-child img {
+        border-radius: 22px;
+      }
+
+      .ban {
+        border-radius: 22px;
+        overflow: hidden;
+      }
+
+      .th img {
+        border-radius: 10px;
+      }
+
+      .note {
+        background: #e8c860;
+        color: #191814;
+        font: 600 12px Inter;
+        text-align: center;
+        padding: 6px;
+      }
+
+      @media (max-width:820px) {
+        .hb {
+          display: block;
+        }
+        nav {
+          display: none;
+          position: absolute;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: var(--bg);
+          flex-direction: column;
+          padding: 12px 20px 20px;
+          gap: 4px;
+          border-bottom: 1px solid var(--c);
+        }
+        nav.open {
+          display: flex;
+        }
+        .two,.story,.ct,.tm,.dg,.ban,footer .g {
+          grid-template-columns: 1fr;
+        }
+        .tm aside {
+          position: static;
+        }
+        .ban div {
+          padding: 26px;
+        }
+        .sec {
+          padding: 48px 0;
+        }
+        .ban:nth-child(even) {
+          direction: ltr;
+        }
+      }
+
+      /* Search bar */
+      .sbar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        background: var(--bg);
+        border-bottom: 1px solid var(--c);
+        box-shadow: 0 16px 30px rgba(0,0,0,.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity .25s,transform .25s,visibility 0s .25s;
+      }
+
+      .sbar.on {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition-delay: 0s;
+      }
+
+      .sfield {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 64px;
+      }
+
+      .sfield>svg {
+        width: 20px;
+        height: 20px;
+        flex: none;
+        fill: none;
+        stroke: var(--mut);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .sfield input {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--ink);
+        font: 500 18px Inter,sans-serif;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      .sfield input::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+      }
+
+      .sfield input::placeholder {
+        color: var(--mut);
+      }
+
+      .sres {
+        padding: 0 0 18px;
+        max-height: min(62vh,440px);
+        overflow-y: auto;
+      }
+
+      .schips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .sri {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        padding: 8px;
+        border: 0;
+        border-radius: 14px;
+        background: none;
+        color: var(--ink);
+        text-align: left;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .sri:hover,.sri:focus-visible {
+        background: var(--card);
+      }
+
+      .sri img {
+        width: 48px;
+        height: 60px;
+        flex: none;
+        object-fit: cover;
+        border-radius: 10px;
+        background: var(--c);
+      }
+
+      .sri b {
+        display: block;
+        font: 500 18px/1.2 Fraunces,Georgia,serif;
+      }
+
+      .sri small {
+        color: var(--mut);
+        font-size: 12px;
+      }
+
+      .sri .pr {
+        margin-left: auto;
+        white-space: nowrap;
+      }
+
+      /* Product card: add to cart */
+      .card {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card .im {
+        flex: none;
+      }
+
+      .card .row {
+        margin-bottom: 12px;
+      }
+
+      .card .add {
+        margin-top: auto;
+        width: 100%;
+        padding: 11px 16px;
+        font-size: 12px;
+        text-align: center;
+        transition: transform .2s,filter .2s;
+      }
+
+      .card .add:hover {
+        filter: brightness(1.12);
+        transform: translateY(-2px);
+      }
+
+      /* Header: long brand name */
+      .brand {
+        min-width: 0;
+      }
+
+      .brand img {
+        flex: none;
+      }
+
+      .brand span {
+        line-height: 1.05;
+        text-align: left;
+      }
+
+      @media (max-width:1200px) {
+        .hb {
+          display: block;
+        }
+        nav {
+          display: none;
+          position: absolute;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: var(--bg);
+          flex-direction: column;
+          padding: 12px 20px 20px;
+          gap: 4px;
+          border-bottom: 1px solid var(--c);
+        }
+        nav.open {
+          display: flex;
+        }
+      }
+
+      /* Hero intro animation (background only) */
+      .hero {
+        overflow: hidden;
+      }
+
+      .hero img {
+        animation: heroIn 2.4s cubic-bezier(.16,.84,.3,1) backwards;
+        will-change: transform,filter,opacity;
+      }
+
+      @keyframes heroIn {
+        0% {
+          opacity: 0;
+          transform: scale(1.22);
+          filter: blur(12px) brightness(.5);
+        }
+        55% {
+          opacity: 1;
+          filter: blur(3px) brightness(.85);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+          filter: blur(0) brightness(1);
+        }
+      }
+
+      @media (prefers-reduced-motion:reduce) {
+        .hero img {
+          animation: none;
+        }
+        .sbar {
+          transition: none;
+        }
+      }
+      /* Header: logo and icons sit closer to the screen edges */
+      header .nb { max-width: none; padding-left: clamp(14px,2.4vw,36px); padding-right: clamp(14px,2.4vw,36px); }
+      /* Gallery */
+      .gal { columns: 3 280px; column-gap: 14px; }
+      .gal figure { margin: 0 0 14px; break-inside: avoid; border-radius: 22px; overflow: hidden; position: relative; cursor: zoom-in; }
+      .gal img { width: 100%; display: block; transition: transform .5s; }
+      .gal figure:hover img { transform: scale(1.04); }
+      .gal figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 16px 12px; color: #f1ead9; font: 600 11px Inter,sans-serif; letter-spacing: .14em; text-transform: uppercase; background: linear-gradient(0deg,rgba(0,0,0,.65),transparent); opacity: 0; transition: opacity .3s; }
+      .gal figure:hover figcaption,.gal figure:focus-visible figcaption { opacity: 1; }
+      .lbx { position: fixed; inset: 0; z-index: 120; background: rgba(10,10,8,.93); display: none; align-items: center; justify-content: center; }
+      .lbx.on { display: flex; }
+      .lbx img { max-width: 92vw; max-height: 86vh; border-radius: 18px; }
+      .lbn { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 1px solid #f1ead9; background: rgba(0,0,0,.35); color: #f1ead9; font-size: 28px; line-height: 1; cursor: pointer; }
+      .lbp { left: 18px; } .lbq { right: 18px; }
+      .lbc { position: absolute; top: calc(env(safe-area-inset-top,0px) + 16px); right: 18px; border: 0; background: none; color: #f1ead9; font-size: 38px; line-height: 1; cursor: pointer; }
+      /* ---------- Button hover animations ---------- */
+      .btn,.chip,.sz button { position: relative; overflow: hidden; isolation: isolate; transition: transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s,color .32s,border-color .32s; }
+      .btn::before,.chip::before,.sz button::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--sw,#1e3d2c); transform: translateY(102%); border-radius: inherit; transition: transform .38s cubic-bezier(.2,.7,.2,1); }
+      .btn:hover::before,.chip:hover::before,.sz button:hover::before,.btn:focus-visible::before { transform: none; }
+      .btn:hover,.btn:focus-visible { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,.2); color: #f1ead9; border-color: var(--sw,#1e3d2c); }
+      .btn:active,.chip:active,.sz button:active { transform: translateY(0) scale(.96); box-shadow: none; transition-duration: .08s; }
+      .btn.g { --sw: #191814; }
+      .btn.g:hover { border-color: #191814; }
+      .btn.o { --sw: var(--ink); }
+      .btn.o:hover { color: var(--bg); border-color: var(--ink); }
+      .hero .btn.o { --sw: #f1ead9; }
+      .hero .btn.o:hover { color: #191814; border-color: #f1ead9; }
+      .btn.l { --sw: #1e3d2c; }
+      .btn.l:hover { color: #f1ead9; border-color: #1e3d2c; }
+      .chip { --sw: var(--ink); }
+      .chip:hover { transform: translateY(-2px); color: var(--bg); }
+      .chip::before,.sz button::before { transform: translateX(-102%); }
+      .chip:hover::before,.sz button:hover::before { transform: none; }
+      .sz button { --sw: var(--ink); }
+      .sz button:hover { transform: translateY(-2px); color: var(--bg); }
+      nav a,nav button { transition: border-color .25s,color .25s,transform .25s; }
+      nav a:hover,nav button:hover { border-color: var(--g); transform: translateY(-1px); }
+      .sx,.x,.lbc,.lbn { transition: transform .25s,background .25s; }
+      .sx:hover,.lbc:hover { transform: rotate(90deg) scale(1.1); }
+      .x:hover,.lbn:hover { transform: scale(1.08); }
+      .lbn:hover { background: rgba(241,234,217,.2); }
+      .lbn { transform: translateY(-50%); }
+      .lbn:hover { transform: translateY(-50%) scale(1.1); }
+      @media (prefers-reduced-motion: reduce) { .btn,.chip,.sz button,.btn::before,.chip::before { transition: none; } .btn:hover { transform: none; } }
+
+      /* ---------- Product slideshow ---------- */
+      .card .im img.sl { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease, transform .5s; }
+      .card .im img.sl.on { opacity: 1; }
+      .ar { position: absolute; top: 50%; z-index: 3; width: 28px; height: 28px; margin-top: -14px; padding: 0; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: rgba(248,243,230,.55); color: #191814; cursor: pointer; opacity: 0; transition: opacity .25s, background .2s, transform .2s; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+      .ar svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .ar.al { left: 8px; } .ar.ar2 { right: 8px; }
+      .card .im:hover .ar, .ar:focus-visible { opacity: 1; }
+      .ar:hover { background: rgba(248,243,230,.9); transform: scale(1.08); }
+      .ar:active { transform: scale(.94); }
+      @media (hover: none) { .ar { opacity: .75; } }
+      .card .im .pip { position: absolute; left: 0; right: 0; bottom: 8px; z-index: 3; display: flex; justify-content: center; gap: 4px; pointer-events: none; }
+      .card .im .pip i { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.55); transition: background .3s, transform .3s; }
+      .card .im .pip i.on { background: #fff; transform: scale(1.35); }
+
+      /* ---------- Contact socials ---------- */
+      .soc { display: flex; gap: 12px; margin: 10px 0 0; }
+      .soc a { width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--ink); border-radius: 50%; color: var(--ink); text-decoration: none; position: relative; overflow: hidden; isolation: isolate; transition: transform .28s cubic-bezier(.2,.7,.2,1), color .3s, border-color .3s, box-shadow .28s; }
+      .soc a::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--g); transform: translateY(102%); transition: transform .38s cubic-bezier(.2,.7,.2,1); }
+      .soc a:hover, .soc a:focus-visible { transform: translateY(-3px); color: #f1ead9; border-color: var(--g); box-shadow: 0 10px 20px rgba(0,0,0,.18); }
+      .soc a:hover::before, .soc a:focus-visible::before { transform: none; }
+      .soc svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .cinfo a { color: var(--g); font-weight: 600; text-underline-offset: 3px; }
+      footer .fsoc a { display: block; }
+      footer .fsoc a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+
+      /* ---------- Cart drawer ---------- */
+      .cvl { position: fixed; inset: 0; z-index: 110; background: rgba(10,10,8,.5); opacity: 0; visibility: hidden; transition: opacity .3s, visibility 0s .3s; }
+      .cvl.on { opacity: 1; visibility: visible; transition-delay: 0s; }
+      .cdr { position: fixed; top: 0; right: 0; bottom: 0; z-index: 111; width: min(420px,100vw); background: var(--bg); color: var(--ink); border-left: 1px solid var(--c); display: flex; flex-direction: column; transform: translateX(104%); transition: transform .38s cubic-bezier(.2,.7,.2,1); padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px); }
+      .cdr.on { transform: none; }
+      .cdh { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--c); }
+      .cdh h2 { font-size: 28px; }
+      .cdb { flex: 1; overflow-y: auto; padding: 8px 22px; }
+      .cde { text-align: center; color: var(--mut); padding: 60px 0; }
+      .ci { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--c); }
+      .ci img { width: 64px; height: 80px; object-fit: cover; border-radius: 12px; background: var(--c); }
+      .ci b { display: block; font: 500 17px/1.2 Fraunces,Georgia,serif; }
+      .ci small { color: var(--mut); font-size: 12px; }
+      .qty { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; border: 1px solid var(--c); border-radius: 99px; }
+      .qty button { width: 28px; height: 28px; border: 0; background: none; color: var(--ink); font-size: 16px; cursor: pointer; border-radius: 50%; }
+      .qty button:hover { background: var(--card); }
+      .qty span { min-width: 18px; text-align: center; font-size: 13px; font-weight: 600; }
+      .rm { background: none; border: 0; color: var(--mut); font-size: 11px; cursor: pointer; text-decoration: underline; margin-top: 8px; display: block; margin-left: auto; padding: 0; }
+      .cdf { padding: 18px 22px 22px; border-top: 1px solid var(--c); background: var(--card); }
+      .cdf .row { margin-bottom: 14px; font-size: 17px; }
+      .cdf .btn { width: 100%; text-align: center; }
+
+      /* ---------- Header brand lockup ---------- */
+      header .nb { padding-left: clamp(8px,1.2vw,16px); }
+      header .brand { gap: 12px; }
+      header .brand img.lg { height: 46px; width: auto; }
+      header .brand img.lg { filter: none !important; }
+      header .brand img.lg-d { display: none; }
+      @media (prefers-color-scheme: dark) { :root:not([data-theme=light]) header .brand img.lg:not(.lg-d) { display: none; } :root:not([data-theme=light]) header .brand img.lg-d { display: block; } }
+      :root[data-theme=dark] header .brand img.lg:not(.lg-d) { display: none; }
+      :root[data-theme=dark] header .brand img.lg-d { display: block; }
+      .bn { display: flex; flex-direction: column; justify-content: center; line-height: 1; text-align: left; }
+      .bn b { font: 700 22px/1 Fraunces,Georgia,serif; letter-spacing: -.01em; }
+      .bn small { font: 600 9.5px/1 Inter,sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--mut); margin-top: 5px; white-space: nowrap; }
+      @media (max-width:520px) {
+        header .brand { gap: 8px; }
+        header .brand img.lg { height: 38px; }
+        .bn b { font-size: 18px; }
+        .bn small { font-size: 8px; letter-spacing: .14em; margin-top: 4px; }
+      }
+
+      /* ===== Account + Confirm Order pages (merged in; scoped to .pgx) ===== */
+      .pgx { --err: #a8382a; }
+      @media (prefers-color-scheme:dark) { :root:not([data-theme=light]) .pgx { --err: #e58472; } }
+      :root[data-theme=dark] .pgx { --err: #e58472; }
+      .pgx [hidden] { display: none !important; }
+      .pgx p { margin: 0 0 14px; }
+      .pgx .btn { text-align: center; position: relative; overflow: hidden; isolation: isolate; }
+      .pgx .btn.full { display: block; width: 100%; }
+      .pgx .btn:disabled { opacity: .6; cursor: progress; }
+      .pgx .pgmain { min-height: 60vh; display: flex; justify-content: center; align-items: center; padding: 56px 20px; }
+      .pgx .panel { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--c); border-radius: 22px; padding: 38px; animation: popUp .5s ease-out; }
+      .pgx .panel.wide { max-width: 580px; }
+      @keyframes popUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+      .pgx .ttl { font-size: clamp(34px,6vw,50px); margin: 12px 0 14px; }
+      .pgx .desc { color: var(--mut); font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
+
+      /* account tabs + form */
+      .pgx .account-container input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+      .pgx .tab-switch { display: flex; gap: 8px; margin-bottom: 26px; }
+      .pgx .tab-switch label { flex: 1; padding: 10px 14px; text-align: center; border: 1px solid var(--ink); border-radius: 99px; font: 500 13px Inter; cursor: pointer; transition: transform .25s, background .25s, color .25s; }
+      .pgx .tab-switch label:hover { transform: translateY(-2px); }
+      #signin:checked ~ .tab-switch label[for="signin"],
+      #signup:checked ~ .tab-switch label[for="signup"] { background: var(--ink); color: var(--bg); }
+      .pgx .form-panel { display: none; }
+      #signin:checked ~ .signin-form,
+      #signup:checked ~ .signup-form { display: block; animation: popUp .35s ease; }
+      .pgx .field label { display: block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin: 16px 0 6px; }
+      .pgx .field input { width: 100%; padding: 13px; border: 1px solid var(--ink); background: var(--card); color: var(--ink); font: inherit; border-radius: 0; }
+      .pgx .field input::placeholder { color: var(--mut); }
+      .pgx .field input:focus-visible { outline: 2px solid var(--g); outline-offset: 2px; }
+      .pgx .forgot-row { display: flex; justify-content: flex-end; margin: 10px 0 22px; }
+      .pgx .forgot-row a { font-size: 12px; color: var(--g); font-weight: 600; text-underline-offset: 3px; }
+      .pgx .terms { font-size: 12px; line-height: 1.7; color: var(--mut); margin: 18px 0 20px; }
+      .pgx .switch-note { text-align: center; font-size: 13px; color: var(--mut); margin: 22px 0 0; }
+      .pgx .switch-note label { color: var(--g); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+      .pgx .account-dashboard { display: none; }
+      .pgx .account-dashboard.visible { display: block; }
+      .pgx .account-dashboard h2 { font-size: clamp(30px,5vw,42px); margin-bottom: 12px; }
+      .pgx .account-forms.hidden { display: none; }
+      .pgx .account-actions { display: grid; gap: 12px; margin-top: 24px; }
+      .pgx .account-message { margin-top: 16px; font-size: 13px; color: var(--mut); }
+      .pgx .account-email { overflow-wrap: anywhere; font: 500 20px/1.3 Fraunces,Georgia,serif; color: var(--g); }
+
+      /* order review */
+      .pgx .details { border: 1px solid var(--c); border-radius: 16px; padding: 6px 20px; background: var(--bg); }
+      .pgx .item { display: flex; justify-content: space-between; gap: 15px; padding: 14px 0; border-bottom: 1px solid var(--c); font-size: 14px; }
+      .pgx .item b { display: block; font: 500 19px/1.2 Fraunces,Georgia,serif; }
+      .pgx .item small { color: var(--mut); font-size: 12px; }
+      .pgx .item .amt { text-align: right; white-space: nowrap; font-weight: 600; }
+      .pgx .detail-row { display: flex; justify-content: space-between; align-items: baseline; gap: 15px; padding: 13px 0; border-bottom: 1px solid var(--c); font-size: 14px; }
+      .pgx .detail-row:last-child { border-bottom: 0; }
+      .pgx .detail-row span { color: var(--mut); }
+      .pgx .detail-row strong { text-align: right; overflow-wrap: anywhere; }
+      .pgx .total { color: var(--g); font: 500 28px/1 Fraunces,Georgia,serif; }
+      .pgx .who { margin: 14px 0 0; text-align: center; font-size: 12px; color: var(--mut); }
+      .pgx .note { margin-top: 20px; padding: 16px 18px; border: 1px solid var(--c); border-left: 3px solid var(--g); border-radius: 12px; background: var(--bg); color: var(--ink); font: 400 13px/1.7 Inter,system-ui,Arial,sans-serif; text-align: left; }
+      .pgx .error { color: var(--err); font-size: 14px; line-height: 1.6; text-align: center; margin-top: 15px; }
+      .pgx .status { margin: 0; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--c); border-left: 3px solid var(--g); background: var(--bg); font-size: 14px; line-height: 1.6; }
+      .pgx .status.bad { border-left-color: var(--err); color: var(--err); }
+      .pgx .actions { display: grid; gap: 12px; margin-top: 20px; }
+
+      @media (max-width: 520px) {
+        .pgx .pgmain { padding: 32px 14px; }
+        .pgx .panel { padding: 26px 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .pgx .panel,.pgx .form-panel { animation: none !important; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="w nb">
+        <button class="brand" type="button" aria-label="DripDrop Cafe &amp; Clothing Co. - go to homepage" title="Go to homepage" onclick="go('home')"><img alt="" class="lg" src="data:image/png;base64,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"/><img alt="" class="lg lg-d" src="data:image/png;base64,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"/><span class="bn"><b>DripDrop</b><small>Cafe &amp; Clothing Co.</small></span></button>
+        <nav id="nv"></nav>
+        <div class="tr">
+          <button class="header-icon" id="sbtn" type="button" aria-label="Search products" title="Search" aria-expanded="false" aria-controls="sb" onclick="toggleSearch()">
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8" />
+              <path d="m16 16 4.5 4.5" />
+            </svg>
+          </button>
+          <button class="header-icon" type="button" aria-label="Account" title="Account" onclick="openAccount()">
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.6" />
+              <path d="M4.8 20c.7-3.5 3.3-5.4 7.2-5.4s6.5 1.9 7.2 5.4" />
+            </svg>
+          </button>
+          <button class="cart" type="button" aria-label="Shopping cart" onclick="openCart()">
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6" />
+              <circle cx="9.5" cy="20" r="1" />
+              <circle cx="17.5" cy="20" r="1" />
+            </svg>
+            <span aria-label="Items in cart" class="cart-count" id="cc">0</span>
+          </button>
+          <button class="hb" onclick="toggleSearch(false);nv.classList.toggle('open')" aria-label="Menu">☰</button>
+        </div>
+      </div>
+      <div class="sbar" id="sb" role="search">
+        <div class="w">
+          <div class="sfield">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+            <input id="sq" type="search" placeholder="Search tees, hoodies, coffee…" autocomplete="off" aria-label="Search products" oninput="runSearch()" onkeydown="if(event.key==='Enter')searchEnter()">
+            <button class="header-icon" type="button" aria-label="Close search" title="Close" onclick="toggleSearch(false)" style="font-size:15px">✕</button>
+          </div>
+          <div class="sres" id="sr"></div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="pg" id="home">
+        <div class="hero">
+          <img alt="Inside the DripDrop cafe and clothing store: hoodies on a rail, the logo on a concrete wall, and the coffee counter" data-i="103"/>
+          <div class="w">
+            <h1 class="bx">Brewed<br/>for the<br/><em>streets.</em></h1>
+            <p>Different cups. Different fits. Same culture.</p>
+            <button class="btn l" onclick="go('shop')">Shop the collection</button>
+            <button class="btn o" onclick="go('shop','cafe')">Order a cup</button>
+          </div>
+        </div>
+        <div class="mq">
+          <div>Brewed for the streets ✦ Drip for the fit ✦ Drop for the cup ✦ Brewed for the streets ✦ Drip for the fit ✦ Drop for the cup ✦ Brewed for the streets ✦ Drip for the fit ✦ Drop for the cup ✦ Brewed for the streets ✦ Drip for the fit ✦ Drop for the cup ✦</div>
+        </div>
+        <div class="w sec">
+          <div class="two">
+            <div class="tile" onclick="go('shop','wear')">
+              <img alt="Model in a cream hoodie" data-i="29"/>
+              <div>
+                <div class="lab" style="color:#ddd">The Drip</div>
+                <h2>Streetwear Essentials</h2>
+              </div>
+            </div>
+            <div class="tile" onclick="go('shop','cafe')">
+              <img alt="DripDrop iced coffee on a concrete table" data-i="35"/>
+              <div>
+                <div class="lab" style="color:#ddd">The Drop</div>
+                <h2>House Blends</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w" style="padding-bottom:72px">
+          <div class="hd">
+            <div>
+              <div class="lab">New on the block</div>
+              <h2>Fresh <em>drops</em></h2>
+            </div>
+            <button class="btn o" onclick="go('shop')">View all</button>
+          </div>
+          <div class="grid" id="hg"></div>
+        </div>
+        <div class="dk sec">
+          <div class="w story">
+            <div>
+              <div class="lab">Wear the Drip. Get the reward.</div>
+              <h1 class="bx" style="font-size:clamp(30px,4.4vw,54px);margin:14px 0">10% off every time you show up in DripDrop.</h1>
+              <p>Wear any DripDrop piece when you order in-store.</p>
+              <button class="btn l" onclick="go('promos')">Explore discount</button>
+            </div>
+            <img alt="Model in a black DripDrop hoodie holding an iced coffee" data-i="102" style="aspect-ratio:4/3;object-fit:cover;width:100%"/>
+          </div>
+        </div>
+      </section>
+      <section class="pg" id="story">
+        <div class="w sec">
+          <div class="story">
+            <div>
+              <div class="lab">Our Story</div>
+              <h1 class="bx">How we <em>brewed</em></h1>
+              <p>DripDrop Cafe & Clothing Co. lives where specialty coffee meets street fashion. “Drip” is for your streetwear essentials; “Drop” is for the coffee you’ll enjoy down to the last drop.</p>
+              <p>DripDrop started in October 2026 as an HTML website project, built by a group of IT students from the University of Eastern Pangasinan. Then we saw what it could be: a place for good coffee, streetwear, and the people who live for both.</p>
+              <p>We’re more than a cafe or a clothing label. We’re a culture where you can express your style, discover your taste, and find your people.</p>
+              <p><strong>We make coffee that slaps and clothes you can hustle in.</strong></p>
+            </div>
+            <div class="clg">
+              <div class="c1"><img alt="Inside the DripDrop cafe and clothing store" data-i="103"/></div>
+              <div class="c2"><img alt="Model carrying a DripDrop tote bag" data-i="33"/></div>
+              <div class="c3"><img alt="Green DripDrop cup among plants" data-i="36"/></div>
+              <div class="c4"><img alt="Model in a green DripDrop hoodie on a rooftop at sunset" data-i="28"/></div>
+              <div class="c5"><img alt="DripDrop iced coffee on a concrete table" data-i="35"/></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="pg" id="shop">
+        <div class="w sec">
+          <div class="hd">
+            <h2 class="bx">The <em>collection</em></h2>
+            <div class="fl" id="fl"></div>
+          </div>
+          <div id="sg"></div>
+        </div>
+      </section>
+      <section class="pg" id="promos">
+        <div class="w sec">
+          <div class="lab">Promotions</div>
+          <h2 class="bx" style="font-size:clamp(36px,6vw,76px);margin:10px 0 34px">Perks that <em>stay</em> with you</h2>
+          <div class="ban">
+            <img alt="Model in a black DripDrop hoodie holding an iced coffee in a concrete cafe courtyard" data-i="102"/>
+            <div>
+              <div class="lab">Campaign</div>
+              <h2>Wear the Drip. Get the reward.</h2>
+              <h3>10% off every time you show up in DripDrop.</h3>
+              <p>Rock your DripDrop gear and get 10% off eligible purchases. From your signature coffee to your next favorite fit, the perks stay with you.</p>
+              <button class="btn g" onclick="go('terms')">Explore discount</button>
+              <div class="sm">Terms & Conditions may apply</div>
+            </div>
+          </div>
+          <div class="ban">
+            <img alt="Iced coffee and a DripDrop cap on a table" data-i="37"/>
+            <div>
+              <div class="lab">Campaign</div>
+              <h2>The Cup & Fit Bundle</h2>
+              <h3>Your fit. Your cup. Take both.</h3>
+              <p>Pair any DripDrop drink with any piece from the collection, and the pair costs less than buying them separately.</p>
+              <p class="lab">Ask our staff for today's bundle price</p>
+              <button class="btn g" onclick="go('terms')">Explore bundle</button>
+              <div class="sm">Terms & Conditions may apply</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="pg" id="gallery">
+        <div class="w sec">
+          <div class="lab">Gallery</div>
+          <h1 class="bx" style="font-size:clamp(40px,6vw,76px);margin:12px 0 30px">The <em>gallery</em></h1>
+          <div class="gal" id="galList"></div>
+        </div>
+      </section>
+      <section class="pg" id="contact">
+        <div class="w sec">
+          <div class="ct">
+            <div>
+              <div class="lab">Contact Us</div>
+              <h1 class="bx" style="font-size:clamp(40px,6vw,76px);margin:12px 0 18px">Let us <em>know.</em></h1>
+              <p>Have a question, suggestion, or feedback? We’d love to hear from you.</p>
+              <div class="cinfo">
+                <p><strong>Hit us up at:</strong><br/><a href="mailto:dripdr0p.ph1@gmail.com">dripdr0p.ph1@gmail.com</a></p>
+                <p>Address: Canarvacanan, Binalonan, Philippines 2436<br/>Hours: 10AM - 6PM</p>
+                <div class="lab" style="margin-top:22px">Follow the drip</div>
+                <div class="soc">
+                  <a href="https://www.instagram.com/drip_drop.ph/?fbclid=IwY2xjawVJOBtleHRuA2FlbQIxMABwZG9mBWJyaWQRMWZkN2xzc2R3MmZReVNtMkZzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeOak4ZAHgQioxiD4hKvVlfR3JR76kJAVSD6pa3HeyVLhy6GnUoV9_YqfNS4E_aem__Ock6OyL2Ven0qCiz4DBjw" target="_blank" rel="noopener noreferrer" aria-label="DripDrop on Instagram" title="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".7"/></svg>
+                  </a>
+                  <a href="https://www.tiktok.com/@drip_dr0p.ph?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="DripDrop on TikTok" title="TikTok">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.3 2.6 2 4.5 5 4.8"/></svg>
+                  </a>
+                  <a href="https://www.facebook.com/share/19aynY8XUQ/" target="_blank" rel="noopener noreferrer" aria-label="DripDrop on Facebook" title="Facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <form class="f" onsubmit="event.preventDefault();sendMsg(this)">
+              <label for="a">Name</label>
+              <input id="a" required>
+              <label for="b">Email</label>
+              <input id="b" type="email" required>
+              <label for="c">Message</label>
+              <textarea id="c" rows="6" required></textarea>
+              <br/><br/>
+              <button class="btn g">Send message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="pg" id="terms">
+        <div class="w sec">
+          <div class="lab">Terms & Policies</div>
+          <h1 class="bx" style="font-size:clamp(40px,6vw,76px);margin:12px 0 30px">The fine <em>print</em></h1>
+          <div class="tm">
+            <aside id="ta"></aside>
+            <div id="tb"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pg pgx" id="account">
+        <div class="pgmain">
+    <div class="panel account-container">
+      <div class="lab">Welcome to DripDrop</div>
+      <h1 class="bx ttl">Your account,<br/><em>your style.</em></h1>
+      <p class="desc" id="account-description">Sign in to your account or create one to join the DripDrop Cafe &amp; Clothing Co. community.</p>
+
+      <section class="account-dashboard" id="account-dashboard" aria-live="polite">
+        <h2>Welcome back!</h2>
+        <p>You are signed in for this browser session as:</p>
+        <p class="account-email" id="signed-in-email"></p>
+        <p class="account-message">This is a demo account page. Sign-in details are not verified by a server.</p>
+        <div class="account-actions">
+          <a class="btn g full" id="continue-link" href="#" onclick="event.preventDefault();continueFromAccount()">Continue Shopping &rarr;</a>
+          <button class="btn o full" type="button" id="sign-out-btn">Sign Out</button>
+        </div>
+      </section>
+
+      <div class="account-forms" id="account-forms">
+        <input type="radio" name="account-tab" id="signin" checked>
+        <input type="radio" name="account-tab" id="signup">
+
+        <div class="tab-switch">
+          <label for="signin">Sign In</label>
+          <label for="signup">Create Account</label>
+        </div>
+
+        <form class="form-panel signin-form" action="#" method="post">
+          <div class="field">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" name="email" placeholder="Enter your email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+          </div>
+          <div class="forgot-row">
+            <a href="mailto:dripdr0p.ph1@gmail.com?subject=Password%20Assistance">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn g full">Sign In &rarr;</button>
+          <p class="switch-note">Don't have an account? <label for="signup">Create one here</label></p>
+        </form>
+
+        <form class="form-panel signup-form" action="#" method="post">
+          <div class="field">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="fullName" placeholder="Enter your full name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" name="email" placeholder="Enter your email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="signup-password">Create Password</label>
+            <input type="password" id="signup-password" name="password" placeholder="Create a password" autocomplete="new-password" minlength="8" required>
+          </div>
+          <div class="field">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" minlength="8" required>
+          </div>
+          <p class="terms">By creating an account, you agree to the shop's terms and privacy policy.</p>
+          <button type="submit" class="btn g full">Create My Account &rarr;</button>
+          <p class="switch-note">Already have an account? <label for="signin">Sign in here</label></p>
+        </form>
+      </div>
+    </div>
+  </div>
+      </section>
+      <section class="pg pgx" id="confirm">
+        <div class="pgmain">
+    <div class="panel wide">
+      <div class="lab">Checkout</div>
+      <h1 class="bx ttl">Confirm your <em>order</em></h1>
+      <p class="desc">Please check your selected items, options, and prices before proceeding.</p>
+
+      <section class="details" id="details">
+        <div id="items"></div>
+        <div class="detail-row">
+          <span>Items</span>
+          <strong id="count">&mdash;</strong>
+        </div>
+        <div class="detail-row">
+          <span>Total</span>
+          <strong class="total" id="total">&mdash;</strong>
+        </div>
+      </section>
+
+      <p id="error" class="error" hidden>No valid order was found. Please return to the shop and select a product.</p>
+
+      <div class="note">
+        <strong>Order Review</strong><br>
+        Verify your items and options, then press Confirm Order to send your order to the shop. We will contact you to arrange payment and pickup.
+      </div>
+
+      <div class="actions">
+        <button class="btn g" id="contactShop" type="button" hidden>Confirm Order</button>
+        <p class="status" id="status" role="status" hidden></p>
+        <a class="btn o" href="#" onclick="event.preventDefault();go('shop')">&larr; Back to Shopping</a>
+      </div>
+    </div>
+  </div>
+      </section>
+    </main>
+    <div class="dt" id="dt">
+      <div class="w">
+        <button class="x" onclick="dt.classList.remove('on')">✕ Close</button>
+        <div class="dg" id="dg"></div>
+      </div>
+    </div>
+    <footer>
+      <div class="w">
+        <div class="g">
+          <div>
+            <div class="brand" style="font-size:28px"><img alt="" data-l="c" style="height:44px"/>DripDrop</div>
+            <p style="opacity:.75">Cafe & Clothing Co.<br/>Brewed for the streets.</p>
+          </div>
+          <div>
+            <div class="lab">Quick links</div>
+            <div id="fq"></div>
+          </div>
+          <div>
+            <div class="lab">Follow</div>
+            <div class="fsoc">
+              <a href="https://www.instagram.com/drip_drop.ph/?fbclid=IwY2xjawVJOBtleHRuA2FlbQIxMABwZG9mBWJyaWQRMWZkN2xzc2R3MmZReVNtMkZzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeOak4ZAHgQioxiD4hKvVlfR3JR76kJAVSD6pa3HeyVLhy6GnUoV9_YqfNS4E_aem__Ock6OyL2Ven0qCiz4DBjw" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.tiktok.com/@drip_dr0p.ph?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok</a>
+              <a href="https://www.facebook.com/share/19aynY8XUQ/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+          </div>
+        </div>
+        <div class="small">© DripDrop Cafe & Clothing Co. All rights reserved. · School project, not a real store.</div>
+      </div>
+    </footer>
+    <div class="lbx" id="lbx" onclick="closeLb()">
+      <img id="lbimg" alt="">
+      <button class="lbn lbp" type="button" aria-label="Previous photo" onclick="event.stopPropagation();stepLb(-1)">&#8249;</button>
+      <button class="lbn lbq" type="button" aria-label="Next photo" onclick="event.stopPropagation();stepLb(1)">&#8250;</button>
+      <button class="lbc" type="button" aria-label="Close" onclick="closeLb()">&times;</button>
+    </div>
+    <div class="cvl" id="cvl" onclick="closeCart()"></div>
+    <aside class="cdr" id="cdr" aria-label="Shopping cart" aria-hidden="true">
+      <div class="cdh"><h2>Your bag</h2><button class="x" style="float:none;margin:0" type="button" onclick="closeCart()">✕ Close</button></div>
+      <div class="cdb" id="cdb"></div>
+      <div class="cdf" id="cdf"></div>
+    </aside>
+    <div class="toast" id="ts"></div>
+    <script>
+      const IMG = {
+          "103": "images/img-103.jpg",
+          "1": "images/img-1.jpg",
+          "2": "images/img-2.jpg",
+          "3": "images/img-3.jpg",
+          "4": "images/img-4.jpg",
+          "6": "images/img-6.jpg",
+          "7": "images/img-7.jpg",
+          "9": "images/img-9.jpg",
+          "10": "images/img-10.jpg",
+          "11": "images/img-11.jpg",
+          "12": "images/img-12.jpg",
+          "13": "images/img-13.jpg",
+          "14": "images/img-14.jpg",
+          "15": "images/img-15.jpg",
+          "16": "images/img-16.jpg",
+          "17": "images/img-17.jpg",
+          "18": "images/img-18.jpg",
+          "19": "images/img-19.jpg",
+          "20": "images/img-20.jpg",
+          "22": "images/img-22.jpg",
+          "23": "images/img-23.jpg",
+          "24": "images/img-24.jpg",
+          "25": "images/img-25.jpg",
+          "26": "images/img-26.jpg",
+          "27": "images/img-27.jpg",
+          "28": "images/img-28.jpg",
+          "29": "images/img-29.jpg",
+          "30": "images/img-30.jpg",
+          "31": "images/img-31.jpg",
+          "32": "images/img-32.jpg",
+          "33": "images/img-33.jpg",
+          "34": "images/img-34.jpg",
+          "35": "images/img-35.jpg",
+          "36": "images/img-36.jpg",
+          "37": "images/img-37.jpg",
+          "101": "images/img-101.jpg",
+          "102": "images/img-102.jpg"
+        }, LOGO = {
+          "k": "images/logo-k.png",
+          "c": "images/logo-c.png"
+        };
+      IMG["104"] = "images/img-104.jpg";
+      IMG["105"] = "images/img-105.jpg";
+      IMG["106"] = "images/img-106.jpg";
+      IMG["107"] = "images/img-107.jpg";
+      IMG["108"] = "images/img-108.jpg";
+      IMG["109"] = "images/img-109.jpg";
+      IMG["110"] = "images/img-110.jpg";
+      const T = [
+        [
+          "home",
+          "Home"
+        ],
+        [
+          "story",
+          "Our Story"
+        ],
+        [
+          "shop",
+          "Shop"
+        ],
+        ["promos","Promotions"],["gallery","Gallery"],
+        [
+          "contact",
+          "Contact Us"
+        ],
+        [
+          "terms",
+          "Terms & Policies"
+        ]
+      ];
+      const S = p => [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ].map(s => [
+        s,
+        p
+      ]);
+      const C = {
+        r: [
+          "Burgundy",
+          "#783f4b"
+        ],
+        k: [
+          "Maroon",
+          "#6b2d2f"
+        ],
+        b: [
+          "Black",
+          "#1a1a1a"
+        ],
+        c: [
+          "Cream",
+          "#e9dfc8"
+        ],
+        g: [
+          "Green",
+          "#1e3d2c"
+        ],
+        h: [
+          "Charcoal",
+          "#4a4a48"
+        ]
+      };
+      const col = (k, i) => [
+        C[k][0],
+        C[k][1],
+        i
+      ];
+      const P = [
+        {
+          n: "DripDrop Logo Tee",
+          t: "wear",
+          p: 249,
+          d: "A boxy tee in 100% ring-spun cotton, with the DripDrop logo embroidered on the left chest. Clean look, subtle branding. Wear it with loose denim or straight-leg trousers.",
+          s: S(249),
+          c: [
+            col("k", [1, 105]),
+            col("h", [2, 107]),
+            col("b", [
+              3,
+              6
+            ]),
+            col("c", [
+              4,
+              9
+            ]),
+            col("g", [106, 7])
+          ]
+        },
+        {
+          n: "Daily Grind Oversized Tee",
+          t: "wear",
+          p: 299,
+          d: "Oversized on purpose: heavyweight carded cotton, roomy shoulders, and a loose cut. With the DripDrop logo embroidered on the left chest. Wear it on its own, or under the hoodie when you want another layer.",
+          s: S(299),
+          c: [
+            col("g", [
+              10,
+              16
+            ]),
+            col("b", [
+              11,
+              15
+            ]),
+            col("c", [
+              12,
+              14
+            ]),
+            col("h", [13, 108])
+          ]
+        },
+        {
+          n: "After Hours Graphic Tee",
+          t: "wear",
+          p: 349,
+          d: "A classic short-sleeve crewneck with a late-night coffee ritual scene across the front. The graphic is the focus, so keep everything else plain: simple trousers or denim.",
+          s: S(349),
+          c: [
+            col("k", [
+              17,
+              22
+            ]),
+            col("b", [
+              20,
+              23
+            ]),
+            col("c", [
+              18,
+              24
+            ]),
+            col("g", [
+              19,
+              25
+            ])
+          ]
+        },
+        {
+          n: "DripDrop Hoodie",
+          t: "wear",
+          p: 699,
+          d: "A relaxed fleece hoodie with a minimalist DripDrop logo embroidered on the left chest. With no big graphic, it goes over any tee, from coffee runs to late-night hangouts.",
+          s: S(699),
+          c: [
+            col("b", [
+              26,
+              27
+            ]),
+            col("g", [28, 109]),
+            col("c", [
+              29,
+              30
+            ])
+          ]
+        },
+        {
+          n: "DripDrop Embroidered Cap",
+          t: "wear",
+          p: 549,
+          d: "A cotton six-panel cap with a curved brim and a DripDrop logo embroidered on the front. Plain on purpose, so it works with the Logo Tee or anything else you own.",
+          s: [[
+              "One size",
+              549
+            ]],
+          c: [col("b", [
+              31,
+              32
+            ])]
+        },
+        {
+          n: "Street Session Tote Bag",
+          t: "wear",
+          p: 399,
+          d: "A cotton canvas tote that holds books, coffee beans, and whatever else you carry around.",
+          s: [[
+              "One size",
+              399
+            ]],
+          c: [[
+              "Cream",
+              "#e9dfc8",
+              [33, 110]
+            ]]
+        },
+        {
+          n: "Dirty Drop",
+          t: "cafe",
+          p: 125,
+          d: "Double espresso over cold milk and ice. Strong and creamy.",
+          s: [
+            [
+              "Short \xB7 8 oz",
+              125
+            ],
+            [
+              "Tall \xB7 12 oz",
+              150
+            ],
+            [
+              "Grande \xB7 16 oz",
+              175
+            ],
+            [
+              "Venti \xB7 20 oz",
+              200
+            ]
+          ],
+          c: [[
+              "",
+              "",
+              [35]
+            ]]
+        },
+        {
+          n: "Brown Sugar Iced Latte",
+          t: "cafe",
+          p: 145,
+          d: "Espresso, milk, and brown sugar over ice. Sweet, with the coffee still up front.",
+          s: [
+            [
+              "Short \xB7 8 oz",
+              145
+            ],
+            [
+              "Tall \xB7 12 oz",
+              170
+            ],
+            [
+              "Grande \xB7 16 oz",
+              195
+            ],
+            [
+              "Venti \xB7 20 oz",
+              220
+            ]
+          ],
+          c: [[
+              "",
+              "",
+              [101]
+            ]]
+        },
+        {
+          n: "Double Shot Espresso",
+          t: "cafe",
+          p: 105,
+          d: "Two shots. No small talk required.",
+          s: [[
+              "Double shot",
+              105
+            ]],
+          c: [[
+              "",
+              "",
+              [36]
+            ]]
+        },
+        {
+          n: "House Blend Beans",
+          t: "cafe",
+          p: 349,
+          d: "Bring the DripDrop ritual home. 250g of arabica house blend. Medium-roasted, with smooth chocolate and caramel undertones. Grind it and brew it however you like.",
+          s: [[
+              "250g",
+              349
+            ]],
+          c: [[
+              "",
+              "",
+              [34]
+            ]]
+        }
+      ];
+      const TM = [
+        [
+          "gen",
+          "General Conditions",
+          [
+            "All promotions are valid only at participating DripDrop Cafe & Clothing Co. locations.",
+            "Customers are encouraged to confirm eligibility, exclusions, and current promotional details with store staff before completing a purchase.",
+            "DripDrop Cafe & Clothing Co. reserves the right to amend these terms and conditions when necessary, subject to applicable laws and regulations."
+          ]
+        ],
+        [
+          "p10",
+          "10% off every time you show up in DripDrop",
+          [
+            "Customers are entitled to 10% off eligible purchases when wearing official DripDrop merchandise during an in-store order.",
+            "Customers must wear their DripDrop merchandise at the time of purchase to qualify for the discount.",
+            "The discount cannot be combined with other promotions, discounts, or special offers unless otherwise stated."
+          ]
+        ],
+        [
+          "bun",
+          "The Cup & Fit Bundle",
+          [
+            "The promotion offers a bundle featuring a selected DripDrop beverage and an eligible streetwear item.",
+            "The promotional price applies only to qualifying drink-and-apparel combinations.",
+            "The bundle offer cannot be combined with other promotions or discounts unless otherwise stated."
+          ]
+        ],
+        [
+          "ref",
+          "Refund and Return Policy",
+          [
+            "Coffee and other prepared beverages are generally non-refundable once prepared and served.",
+            "Unworn, unused, and unwashed apparel may be eligible for return or exchange, with original tags and proof of purchase.",
+            "Requests must be made within seven (7) days of purchase.",
+            "Approved refunds will be issued using the original payment method whenever possible."
+          ]
+        ]
+      ];
+      const MAIL_ENDPOINT = "https://formsubmit.co/ajax/dripdr0p.ph1@gmail.com";
+      const SESSION_KEY = "dripdropSignedInEmail";
+      let cat = "all";
+      const $ = id => document.getElementById(id);
+      const pr = n => "\u20B1" + n.toLocaleString();
+      const im = a => a && a.length ? `<img src="${ IMG[a[0]] }" alt="">` : `<div class="ph" style="height:100%">[PLACEHOLDER PHOTO]</div>`;
+      function toast(m, ms) {
+        ts.textContent = m;
+        ts.classList.add("on");
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => ts.classList.remove("on"), ms || 2200);
+      }
+      function go(p, f) {
+        document.querySelectorAll(".pg").forEach(e => e.classList.toggle("on", e.id == p));
+        document.querySelectorAll("nav [data-p]").forEach(e => e.classList.toggle("on", e.dataset.p == p));
+        nv.classList.remove("open");
+        toggleSearch(false);
+        if (f) {
+          cat = f;
+          fl2();
+        }
+        scrollTo(0, 0);
+      }
+      function card(i, sel) {
+        const p = P[i];
+        return `<div class="card" onclick="openD(${ i })"><div class="im" id="im${ sel }${ i }">${ slides(p.c[0][2]) }</div><h3>${ p.n }</h3><div class="row"><span class="pr">${ p.s.length > 1 && p.t == "cafe" ? "from " : "" }${ pr(p.p) }</span>${ p.c.length > 1 ? `<div class="sw" onclick="event.stopPropagation()">${ p.c.map((c, k) => `<i style="background:${ c[1] }" title="${ c[0] }" class="${ k ? "" : "on" }" onclick="sw(${ i },${ k },'${ sel }',this)"></i>`).join("") }</div>` : "" }</div><button class="btn g add" type="button" onclick="event.stopPropagation();addCart(${ i },this)">Add to cart</button></div>`;
+      }
+      /* ---------- Slideshow ---------- */
+      const CHEV = d => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ d }"/></svg>`;
+      function slides(a) {
+        if (!a || !a.length) return im(a);
+        if (a.length < 2) return `<img class="sl on" src="${ IMG[a[0]] }" alt="">`;
+        return a.map((x, j) => `<img class="sl${ j ? "" : " on" }" src="${ IMG[x] }" alt="" loading="lazy">`).join("")
+          + `<button class="ar al" type="button" aria-label="Previous photo" onclick="event.stopPropagation();slide(this.parentNode,-1)">${ CHEV("M15 5l-7 7 7 7") }</button>`
+          + `<button class="ar ar2" type="button" aria-label="Next photo" onclick="event.stopPropagation();slide(this.parentNode,1)">${ CHEV("M9 5l7 7-7 7") }</button>`
+          + `<div class="pip">${ a.map((x, j) => `<i class="${ j ? "" : "on" }"></i>`).join("") }</div>`;
+      }
+      function slide(box, d) {
+        const s = box.querySelectorAll("img.sl");
+        if (s.length < 2) return;
+        let n = 0;
+        s.forEach((e, j) => { if (e.classList.contains("on")) n = j; });
+        const m = (n + d + s.length) % s.length;
+        s[n].classList.remove("on");
+        s[m].classList.add("on");
+        box.querySelectorAll(".pip i").forEach((e, j) => e.classList.toggle("on", j == m));
+      }
+      let slideTick = 0;
+      setInterval(() => {
+        if (document.hidden || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        slideTick++;
+        document.querySelectorAll(".card .im").forEach((box, j) => {
+          if (!box.offsetParent || box.matches(":hover")) return;
+          if ((slideTick + j) % 2 === 0) slide(box, 1);
+        });
+      }, 1800);
+
+      /* ---------- Cart ---------- */
+      let CART = [];
+      try { CART = JSON.parse(localStorage.getItem("dd-cart") || "[]").filter(x => P[x.i]); } catch (e) { CART = []; }
+      function saveCart() {
+        try { localStorage.setItem("dd-cart", JSON.stringify(CART)); } catch (e) {}
+        const n = CART.reduce((a, x) => a + x.q, 0);
+        cc.textContent = n || "";
+        renderCart();
+      }
+      function addItem(i, k, j) {
+        const p = P[i], c = p.c[k], s = p.s[j];
+        const opt = [c[0], s[0]].filter(Boolean).join(" \u00B7 ");
+        const f = CART.find(x => x.i == i && x.k == k && x.j == j);
+        if (f) f.q++; else CART.push({ i, k, j, q: 1, opt, price: s[1] });
+        saveCart();
+      }
+      function addCart(i, b) {
+        addItem(i, 0, 0);
+        toast(P[i].n + " added to bag");
+        b.textContent = "Added \u2713";
+        clearTimeout(b._t);
+        b._t = setTimeout(() => b.textContent = "Add to cart", 1400);
+      }
+      function openCart() {
+        renderCart();
+        cvl.classList.add("on");
+        cdr.classList.add("on");
+        cdr.setAttribute("aria-hidden", "false");
+      }
+      function closeCart() {
+        cvl.classList.remove("on");
+        cdr.classList.remove("on");
+        cdr.setAttribute("aria-hidden", "true");
+      }
+      function qtyCart(n, d) {
+        CART[n].q += d;
+        if (CART[n].q < 1) CART.splice(n, 1);
+        saveCart();
+      }
+      function renderCart() {
+        const total = CART.reduce((a, x) => a + x.q * x.price, 0);
+        $("cdb").innerHTML = CART.length ? CART.map((x, n) => {
+          const p = P[x.i], a = p.c[x.k][2];
+          return `<div class="ci"><img src="${ a && a.length ? IMG[a[0]] : "" }" alt=""><div><b>${ p.n }</b><small>${ x.opt }</small><div class="qty"><button type="button" aria-label="Decrease" onclick="qtyCart(${ n },-1)">\u2212</button><span>${ x.q }</span><button type="button" aria-label="Increase" onclick="qtyCart(${ n },1)">+</button></div></div><div><div class="pr">${ pr(x.price * x.q) }</div><button class="rm" type="button" onclick="qtyCart(${ n },-99)">Remove</button></div></div>`;
+        }).join("") : `<div class="cde">Your bag is empty.<br/>Go grab some drip.</div>`;
+        $("cdf").innerHTML = CART.length ? `<div class="row"><span>Subtotal</span><span class="pr">${ pr(total) }</span></div><button class="btn g" type="button" onclick="checkoutCart()">Confirm Order</button>` : `<button class="btn o" type="button" onclick="closeCart();go('shop')">Browse the collection</button>`;
+      }
+      function goCheckout(items) {
+        let who = null;
+        try { who = sessionStorage.getItem(SESSION_KEY); } catch (e) {}
+        if (!who) {
+          toast("Please sign in to continue to checkout");
+          setTimeout(() => { closeCart(); dt.classList.remove("on"); openAccount(items); }, 900);
+          return;
+        }
+        closeCart();
+        dt.classList.remove("on");
+        showConfirm(items);
+      }
+      function checkoutCart() {
+        if (!CART.length) return;
+        goCheckout(CART.map(x => ({ n: P[x.i].n, o: x.opt, q: x.q, p: x.price })));
+      }
+      async function sendMsg(f) {
+        const btn = f.querySelector("button"), label = btn.textContent;
+        const v = [...f.querySelectorAll("input,textarea")].map(e => e.value.trim());
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+        try {
+          const r = await fetch(MAIL_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({ name: v[0], email: v[1], message: v[2], _subject: "New message from " + v[0] + " via the DripDrop website", _template: "table", _captcha: "false" })
+          });
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok || d.success === "false" || d.success === false) throw new Error("send failed");
+          toast("Message sent! We’ll get back to you soon.", 3500);
+          f.reset();
+        } catch (e) {
+          toast("Couldn’t send right now. Please email dripdr0p.ph1@gmail.com", 5000);
+        }
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+      function sw(i, k, sel, el) {
+        $("im" + sel + i).innerHTML = slides(P[i].c[k][2]);
+        el.parentNode.querySelectorAll("i").forEach(x => x.classList.remove("on"));
+        el.classList.add("on");
+      }
+      function fl2() {
+        const f = [
+          [
+            "all",
+            "All"
+          ],
+          [
+            "wear",
+            "Clothing"
+          ],
+          [
+            "cafe",
+            "Cafe"
+          ]
+        ];
+        $("fl").innerHTML = f.map(x => `<button class="chip ${ cat == x[0] ? "on" : "" }" onclick="cat='${ x[0] }';fl2()">${ x[1] }</button>`).join("");
+        $("sg").innerHTML = [
+          [
+            "wear",
+            "New on the block"
+          ],
+          [
+            "cafe",
+            "Your daily dose"
+          ]
+        ].map(g => cat == "all" || cat == g[0] ? `<h3 class="gl">${ g[1] }</h3><div class="grid">${ P.map((p, i) => p.t == g[0] ? card(i, "s") : "").join("") }</div>` : "").join("");
+        pic();
+      }
+      const esc = t => t.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+      function toggleSearch(force) {
+        const bar = $("sb"), open = typeof force === "boolean" ? force : !bar.classList.contains("on");
+        if (open === bar.classList.contains("on")) return;
+        bar.classList.toggle("on", open);
+        $("sbtn").setAttribute("aria-expanded", open);
+        if (open) {
+          nv.classList.remove("open");
+          runSearch();
+          setTimeout(() => $("sq").focus(), 80);
+        } else {
+          $("sq").value = "";
+          $("sq").blur();
+        }
+      }
+      function searchHits() {
+        const terms = $("sq").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+        if (!terms.length) return null;
+        return P.map((p, i) => i).filter(i => {
+          const p = P[i];
+          const words = (p.n + " " + (p.t == "wear" ? "clothing apparel streetwear wear" : "cafe coffee drink drop espresso")).toLowerCase().split(/[^a-z0-9]+/);
+          return terms.every(t => words.some(w => w.startsWith(t)));
+        });
+      }
+      function fillSearch(t) {
+        $("sq").value = t;
+        runSearch();
+        $("sq").focus();
+      }
+      function runSearch() {
+        const hits = searchHits(), box = $("sr");
+        if (!hits) {
+          box.innerHTML = `<div class="schips"><span class="lab">Popular</span>${ ["Tee", "Hoodie", "Cap", "Latte", "Beans"].map(t => `<button class="chip" type="button" onclick="fillSearch('${ t }')">${ t }</button>`).join("") }</div>`;
+          return;
+        }
+        if (!hits.length) {
+          box.innerHTML = `<p class="sm" style="margin:6px 0 12px">No products match “${ esc($("sq").value.trim()) }”.</p><button class="btn o" type="button" style="padding:9px 18px;font-size:12px" onclick="go('shop')">Browse the collection</button>`;
+          return;
+        }
+        box.innerHTML = hits.slice(0, 6).map(i => {
+          const p = P[i];
+          return `<button class="sri" type="button" onclick="pickSearch(${ i })"><img src="${ IMG[p.c[0][2][0]] }" alt=""><span><b>${ p.n }</b><small>${ p.t == "wear" ? "Clothing" : "Cafe" }</small></span><span class="pr">${ p.s.length > 1 && p.t == "cafe" ? "from " : "" }${ pr(p.p) }</span></button>`;
+        }).join("");
+      }
+      function pickSearch(i) {
+        toggleSearch(false);
+        openD(i);
+      }
+      function searchEnter() {
+        const hits = searchHits();
+        if (hits && hits.length) pickSearch(hits[0]);
+      }
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") { toggleSearch(false); closeCart(); }
+      });
+      document.addEventListener("click", e => {
+        if (e.target.isConnected && !e.target.closest("header")) toggleSearch(false);
+      });
+      const GAL = [[103, "Inside the DripDrop store"], [28, "Green hoodie, rooftop sunset"], [35, "Iced coffee on concrete"], [106, "Green logo tee on the stairs"], [17, "After Hours Tee in burgundy"], [36, "Green cup among the plants"], [102, "Black hoodie and iced coffee"], [29, "Cream hoodie over the city"], [101, "Brown Sugar Iced Latte"], [19, "After Hours Tee in green"], [37, "Cap and iced coffee"], [31, "Black hoodie and cap"], [33, "Street Session Tote Bag"], [110, "Tote bag, packed and ready"], [34, "House Blend Beans"], [26, "Black hoodie against concrete"]].map(a => ({ i: a[0], c: a[1] }));
+      function renderGallery() {
+        $("galList").innerHTML = GAL.map((g, i) => `<figure tabindex="0" onclick="openLb(${ i })" onkeydown="if(event.key==='Enter')openLb(${ i })"><img src="${ IMG[g.i] }" alt="${ g.c }" data-gl="${ i }"><figcaption>${ g.c }</figcaption></figure>`).join("");
+      }
+      let lbi = 0;
+      function openLb(i) {
+        lbi = i;
+        $("lbimg").src = IMG[GAL[i].i];
+        $("lbimg").alt = GAL[i].c;
+        $("lbx").classList.add("on");
+      }
+      function closeLb() {
+        $("lbx").classList.remove("on");
+      }
+      function stepLb(d) {
+        openLb((lbi + d + GAL.length) % GAL.length);
+      }
+      document.addEventListener("keydown", e => {
+        if (!$("lbx").classList.contains("on")) return;
+        if (e.key === "Escape") closeLb();
+        if (e.key === "ArrowLeft") stepLb(-1);
+        if (e.key === "ArrowRight") stepLb(1);
+      });
+      let ci = 0, ki = 0, si = 0;
+      function openD(i) {
+        ci = i;
+        ki = 0;
+        si = 0;
+        drw();
+        dt.classList.add("on");
+      }
+      function drw() {
+        const p = P[ci], c = p.c[ki], a = c[2];
+        $("dg").innerHTML = `<div>${ im(a.slice(0, 1)).replace("<img", "<img id=\"big\"") }<div class="th">${ a.map((x, j) => `<img src="${ IMG[x] }" alt="" class="${ j ? "" : "on" }" onclick="big.src=this.src;document.querySelectorAll('.th img').forEach(e=>e.classList.remove('on'));this.classList.add('on')">`).join("") }</div></div><div><div class="lab">${ p.t == "wear" ? "New on the block" : "Your daily dose" }</div><h2>${ p.n }</h2><div class="pr" style="font-size:24px" id="dp">${ pr(p.s[si][1]) }</div><p>${ p.d }</p>${ p.c.length > 1 ? `<div class="lab">Color · ${ c[0] }</div><div class="sw" style="margin:10px 0 22px">${ p.c.map((x, k) => `<i style="width:26px;height:26px;background:${ x[1] }" class="${ k == ki ? "on" : "" }" onclick="ki=${ k };drw()"></i>`).join("") }</div>` : "" }<div class="lab">${ p.t == "wear" ? "Size" : "Size / option" }</div><div class="sz">${ p.s.map((s, j) => `<button class="${ j == si ? "on" : "" }" onclick="si=${ j };drw()">${ s[0] }${ p.t == "cafe" && p.s.length > 1 ? " \u2014 " + pr(s[1]) : "" }</button>`).join("") }</div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"><button class="btn g" onclick="addItem(ci,ki,si);toast('Added to bag')">Add to cart</button><button class="btn o" onclick="confirmSelectedOrder()">Confirm Order</button></div><p class="sm">Choose your size or option, then select Confirm Order to review your order details.</p></div>`;
+      }
+      function confirmSelectedOrder() {
+        const p = P[ci], c = p.c[ki], sel = p.s[si];
+        goCheckout([{ n: p.n, o: [c[0], sel[0]].filter(Boolean).join(" \u00B7 "), q: 1, p: sel[1] }]);
+      }
+      function pic() {
+        document.querySelectorAll("[data-i]").forEach(e => e.src = IMG[e.dataset.i]);
+        document.querySelectorAll("[data-l]").forEach(e => e.src = LOGO[e.dataset.l]);
+      }
+      nv.innerHTML = T.map(t => `<button data-p="${ t[0] }" onclick="go('${ t[0] }')">${ t[1] }</button>`).join("");
+      $("fq").innerHTML = T.map(t => `<a onclick="go('${ t[0] }')">${ t[1] }</a>`).join("");
+      $("hg").innerHTML = [
+        0,
+        2,
+        3
+      ].map(i => card(i, "h")).join("");
+      $("ta").innerHTML = TM.map(t => `<a href="#${ t[0] }">${ t[1] }</a>`).join("");
+      $("tb").innerHTML = TM.map(t => `<h3 id="${ t[0] }">${ t[1] }</h3><ul>${ t[2].map(b => `<li>${ b }</li>`).join("") }</ul>`).join("");
+      document.querySelectorAll(".fr").forEach(f => {
+        const u = IMG[f.dataset.f], s = 16, g = 1.2;
+        for (let i = 0; i < 4; i++) {
+          const e = document.createElement("i"), lt = i ? 25 * i + s + g : 0, lb = i ? 25 * i - s + g : 0, rt = i < 3 ? 25 * (i + 1) + s - g : 100, rb = i < 3 ? 25 * (i + 1) - s - g : 100;
+          e.style.backgroundImage = `url("${ u }")`;
+          e.style.clipPath = `polygon(${ lt }% 0,${ rt }% 0,${ rb }% 100%,${ lb }% 100%)`;
+          f.appendChild(e);
+        }
+      });
+
+      /* ===== Account page logic (from account.html) ===== */
+      let ACCOUNT_NEXT = null;   // items waiting for sign-in before checkout (was the ?next= link)
+      const accountPage = (function () {
+        const sessionKey = 'dripdropSignedInEmail';
+        const dashboard = document.getElementById('account-dashboard');
+        const forms = document.getElementById('account-forms');
+        const description = document.getElementById('account-description');
+        const signedInEmail = document.getElementById('signed-in-email');
+        const signInForm = document.querySelector('.signin-form');
+        const signUpForm = document.querySelector('.signup-form');
+        const continueLink = document.getElementById('continue-link');
+
+        function showSignedIn(email) {
+          signedInEmail.textContent = email;
+          dashboard.classList.add('visible');
+          forms.classList.add('hidden');
+          description.textContent = 'Your DripDrop account is ready.';
+        }
+        function showForms() {
+          dashboard.classList.remove('visible');
+          forms.classList.remove('hidden');
+          description.textContent = 'Sign in to your account or create one to join the DripDrop Cafe & Clothing Co. community.';
+        }
+        function afterAuth() {
+          if (ACCOUNT_NEXT) { showConfirm(ACCOUNT_NEXT); }
+        }
+        // runs each time the account page is opened
+        function open() {
+          if (ACCOUNT_NEXT) {
+            description.textContent = 'Sign in or create an account to continue to checkout.';
+            continueLink.textContent = 'Continue to Checkout →';
+          } else {
+            continueLink.innerHTML = 'Continue Shopping &rarr;';
+          }
+          let activeEmail = null;
+          try { activeEmail = sessionStorage.getItem(sessionKey); } catch (e) {}
+          if (activeEmail) { showSignedIn(activeEmail); afterAuth(); }
+          else if (!ACCOUNT_NEXT) { showForms(); }
+        }
+
+        signInForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const email = document.getElementById('login-email').value.trim();
+          const password = document.getElementById('login-password').value;
+          if (!email || !password) return;
+          sessionStorage.setItem(sessionKey, email);
+          showSignedIn(email);
+          afterAuth();
+        });
+
+        signUpForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const name = document.getElementById('full-name').value.trim();
+          const email = document.getElementById('signup-email').value.trim();
+          const password = document.getElementById('signup-password').value;
+          const confirmPassword = document.getElementById('confirm-password').value;
+          if (password !== confirmPassword) {
+            alert('Passwords do not match. Please try again.');
+            document.getElementById('confirm-password').focus();
+            return;
+          }
+          if (password.length < 8) {
+            alert('Please use a password with at least 8 characters.');
+            return;
+          }
+          sessionStorage.setItem(sessionKey, email);
+          if (name) sessionStorage.setItem('dripdropDisplayName', name);
+          showSignedIn(email);
+          afterAuth();
+        });
+
+        document.getElementById('sign-out-btn').addEventListener('click', function () {
+          sessionStorage.removeItem(sessionKey);
+          sessionStorage.removeItem('dripdropDisplayName');
+          showForms();
+          signInForm.reset();
+          signUpForm.reset();
+        });
+
+        return { open: open };
+      })();
+      function openAccount(next) {
+        ACCOUNT_NEXT = next || null;
+        go('account');
+        accountPage.open();
+      }
+      function continueFromAccount() {
+        if (ACCOUNT_NEXT) showConfirm(ACCOUNT_NEXT); else go('shop');
+      }
+
+      /* ===== Confirm Order page logic (from confirm-order.html) ===== */
+      const SHOP_EMAIL = "dripdr0p.ph1@gmail.com";
+
+      // Catalog: allowed unit prices per product (guards against edited links)
+      const products = {
+          "DripDrop Logo Tee": [249],
+          "Daily Grind Oversized Tee": [299],
+          "After Hours Graphic Tee": [349],
+          "DripDrop Hoodie": [699],
+          "DripDrop Embroidered Cap": [549],
+          "Street Session Tote Bag": [399],
+          "Dirty Drop": [125, 150, 175, 200],
+          "Brown Sugar Iced Latte": [145, 170, 195, 220],
+          "Double Shot Espresso": [105],
+          "House Blend Beans": [349]
+      };
+      const peso = n => "₱" + n.toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      function showConfirm(items) {
+        go("confirm");
+        renderConfirm(items);
+      }
+      function renderConfirm(items) {
+        const valid = Array.isArray(items) && items.length > 0 && items.length <= 30 && items.every(it =>
+            it && typeof it.n === "string" && products[it.n] &&
+            Number.isInteger(it.q) && it.q >= 1 && it.q <= 99 &&
+            Number.isFinite(Number(it.p)) && products[it.n].includes(Number(it.p)));
+
+        const contact = document.getElementById("contactShop");
+        const status = document.getElementById("status");
+        // reset anything left over from a previous visit to this page
+        document.getElementById("items").innerHTML = "";
+        document.querySelectorAll("#confirm .who").forEach(e => e.remove());
+        status.hidden = true;
+        status.className = "status";
+        contact.disabled = false;
+        contact.textContent = "Confirm Order";
+
+        if (valid) {
+            document.getElementById("details").hidden = false;
+            document.getElementById("error").hidden = true;
+            const box = document.getElementById("items");
+            let total = 0, count = 0;
+            items.forEach(it => {
+                const line = Number(it.p) * it.q;
+                total += line; count += it.q;
+                const row = document.createElement("div");
+                row.className = "item";
+                const left = document.createElement("div");
+                const b = document.createElement("b"); b.textContent = it.n;
+                const sm = document.createElement("small");
+                sm.textContent = [String(it.o || ""), "Qty " + it.q + " × " + peso(Number(it.p))].filter(Boolean).join(" · ");
+                left.append(b, sm);
+                const amt = document.createElement("div");
+                amt.className = "amt"; amt.textContent = peso(line);
+                row.append(left, amt);
+                box.appendChild(row);
+            });
+            document.getElementById("count").textContent = count + (count === 1 ? " item" : " items");
+            document.getElementById("total").textContent = peso(total);
+
+            let email = "", name = "";
+            try {
+                email = sessionStorage.getItem("dripdropSignedInEmail") || "";
+                name = sessionStorage.getItem("dripdropDisplayName") || "";
+            } catch (e) {}
+            if (email) {
+                const who = document.createElement("p");
+                who.className = "who";
+                who.textContent = "Ordering as " + (name ? name + " · " : "") + email;
+                document.getElementById("details").after(who);
+            }
+
+            const message =
+                "Hello DripDrop! I would like to confirm my order:\n\n" +
+                items.map(it => "• " + it.n + (it.o ? " (" + it.o + ")" : "") + " x" + it.q + " — " + peso(Number(it.p) * it.q)).join("\n") +
+                "\n\nTotal: " + peso(total) +
+                (email ? "\n\nName: " + (name || "—") + "\nEmail: " + email : "");
+
+            contact.hidden = false;
+            contact.onclick = async () => {
+                contact.disabled = true;
+                contact.textContent = "Sending…";
+                status.hidden = true;
+                status.className = "status";
+                const payload = {
+                    name: name || "Customer",
+                    order: message,
+                    total: peso(total),
+                    _subject: "New DripDrop order — " + peso(total),
+                    _template: "table",
+                    _captcha: "false",
+                    _autoresponse: "Thanks for ordering from DripDrop Cafe & Clothing Co.! We received your order and will contact you shortly.\n\n" + message
+                };
+                if (email) payload.email = email;
+                try {
+                    const r = await fetch(MAIL_ENDPOINT, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                    const d = await r.json().catch(() => ({}));
+                    if (!r.ok || d.success === "false" || d.success === false) throw new Error("send failed");
+                    contact.hidden = true;
+                    status.textContent = "Order sent! Thank you" + (name ? ", " + name : "") + ". The shop has your order and will contact you" + (email ? " at " + email : "") + " shortly.";
+                    status.hidden = false;
+                    try { localStorage.removeItem("dd-cart"); } catch (e) {}
+                    CART = [];
+                    saveCart();
+                } catch (e) {
+                    contact.disabled = false;
+                    contact.textContent = "Confirm Order";
+                    status.className = "status bad";
+                    status.textContent = "We couldn’t send your order just now. Please try again, or email " + SHOP_EMAIL + ".";
+                    status.hidden = false;
+                }
+            };
+        } else {
+            document.getElementById("details").hidden = true;
+            document.getElementById("error").hidden = false;
+            contact.hidden = true;
+        }
+      }
+
+      renderGallery();
+      fl2();
+      pic();
+      saveCart();
+      go("home");
+    </script>
+  </body>
+</html>
